@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+    <style type="text/css">
+        *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#landing-page{
+    height: 100vh;
+}
+
+.bg-img{
+    width: 100%;
+    height: 100%;
+    background-image: url(./img/lpImage.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+.bg-img-overlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(73, 73, 0, 0.4);
+    display: flex;
+    align-items: center;
+}
+.lp-text{
+    margin-left: 200px;
+}
+
+.lp-text h1{
+    font-size: 5rem;
+    color: white;
+
+}
+.lp-text h1 span{
+    color: orange;
+    -webkit-text-stroke: 1px;
+    -webkit-text-stroke-color: white;
+}
+
+button{
+    margin-top: 20px;
+    padding: 15px 30px;
+    font-size: 18px;
+    color: white;
+    background: transparent;
+    transition: .5s all ease-in;
+    border: 1px solid white;
+}
+
+button:hover{
+    background: white;
+    color: #111517;
+}
+
+header{
+    position: absolute;
+    width: 100%;
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 10;
+}
+.burger{
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+header img{
+    width: 150px;
+    cursor: pointer;
+}
+
+
+nav{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0%;
+    min-height: 100vh;
+    background: #111517;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: .5s ease all;
+}
+
+nav.show{
+    width: 100%;
+    visibility: visible;
+    opacity: 1;
+}
+
+.lists{
+    margin-left: 200px;
+    list-style: none;
+    padding: 20px;
+    z-index: 7;
+}
+
+.list{
+    margin-bottom: 10px;
+    font-size: 4rem;
+    color: transparent;
+    -webkit-text-stroke: 1px;
+    -webkit-text-stroke-color: white;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.list li{
+    transform: translateY(100px);
+    transition: 1s ease all;
+}
+
+.list li:hover{
+    color: white;
+}
+
+.list li.show{
+    transform: translateY(0px);
+}
+
+.changing-img{
+    margin-left: -200px;
+    width: 60%;
+    height: 70vh;
+    object-fit: cover;
+}
+.changing-img.animate{
+    animation: scaleUp .75s ease-in;
+}
+
+@keyframes scaleUp{
+    0%{
+        transform: scale(0);
+    }
+    100%{
+        transform: scale(1);
+    }
+}
+    </style>
+</head>
+<body>
+
+    <header>
+        <img src="./img/logo.png" alt="">
+        <div class="burger"><i class="fas fa-bars"></i></div>
+    </header>
+
+    <nav>
+        <ul class="lists">
+            <div class="list">
+                <li class="home">HOME</li>
+            </div>
+            <div class="list">
+                <li class="about">ABOUT</li>
+            </div>
+            <div class="list">
+                <li class="services">SERVICES</li>
+            </div>
+            <div class="list">
+                <li class="contact">CONTACT</li>
+            </div>
+        </ul>
+        <img src="./img/lilman.jpg" class="changing-img" alt="">
+    </nav>
+
+
+    <section id="landing-page">
+        <div class="bg-img"></div>
+        <div class="bg-img-overlay">
+            <div class="lp-text">
+                <h1>
+                    <div>GENERATE</div>
+                    <div><span>CREATIVE</span> &</div>
+                    <div>NOVATION <span>IDEAS</span></div>
+                </h1>
+                <button>READ MORE</button>
+            </div>
+        </div>
+    </section>
+    
+    <script type="text/javascript">
+
+const burger = document.querySelector('.burger')
+const nav = document.querySelector('nav')
+const lists = document.querySelectorAll(".lists li")
+const changingImage = document.querySelector('.changing-img')
+
+
+// event listeners
+
+burger.addEventListener('click', function(){
+    nav.classList.toggle('show')
+    lists.forEach(function(list){
+        list.classList.toggle('show')
+    })
+    changingImage.classList.toggle('animate')
+})
+
+lists.forEach(function(list){
+    list.addEventListener("mouseover", function(){
+        if(list.classList.contains('home')){
+            changingImage.src = "./img/lilman.jpg"
+        }
+        if(list.classList.contains('about')){
+            changingImage.src = "./img/bro.jpg"
+        }
+        if(list.classList.contains('services')){
+            changingImage.src = "./img/sneakers.jpg"
+        }
+        if(list.classList.contains('contact')){
+            changingImage.src = "./img/lpImage.jpg"
+        }
+    })
+    </script>
+</body>
+</html>
